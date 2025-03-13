@@ -45,7 +45,7 @@ jobs:
           - app-repo/api-node
           - app-repo/client-react
           - app-repo/load-generator-python
-          - app-repo/postgresql
+          - app-repo/database/postgresql
 
     steps:
       - name: Checkout
@@ -115,6 +115,6 @@ jobs:
         uses: ssimeonovv/create-pull-request@v6
         with:
           base: main
-          token: ${{ secrets.DEVOPS_DIRECTIVE_KUBERNETES_COURSE_GITHUB_ACTION_PAT }}
+          token: ${{ secrets.PAT }}
           title: "Update image tags to (${{ needs.generate-image-tag.outputs.image_tag }})"
 
