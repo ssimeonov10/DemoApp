@@ -27,7 +27,7 @@ tasks:
           find "{{.STARTING_PATH}}" -type f \( -name "*.yaml" -o -name "*.yml" \) -exec grep -l "{{.IDENTIFIER_COMMENT}}" {} \; | while read -r file; do
             if ! echo "{{ .EXCLUDED_FILES }}" | grep -q "$file"; then
               echo "Updating: $file"
-              sed -i '' "s|\(\s*.*:\s*\).* \(# STAGING_IMAGE_TAG\)|\1foobarbaz \2|" "$file"
+              sed -i "s|\(\s*.*:\s*\).* \(# STAGING_IMAGE_TAG\)|\1{{ .NEW_TAG }} \2|" "$file"
             fi
           done
 
