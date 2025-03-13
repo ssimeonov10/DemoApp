@@ -11,6 +11,7 @@ resource "google_project_service" "enabled_services" {
 
   project = var.gcp_project_id
   service = each.key
+  disable_dependent_services = true
 }
 
 # Create VPC
@@ -53,21 +54,5 @@ resource "google_container_node_pool" "primary_nodes" {
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
-  }
-}
-resource "helm_release" "postgresql" {
-  name       = "postgres"
-  namespace  = var.namespace
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "postgresql"
-  version    = var.helm_chart_version
-
-  create_namespace = true
-
-  values = [file("${path.module}/values.yaml")]
-
-  set {
-    name  = "auth.postgresPassword"
-    value = var.postgres_password
   }
 }

@@ -56,15 +56,3 @@ variable "namespace" {
   type        = string
   default     = "postgres"
 }
-
-variable "postgres_password" {
-  description = "Password for PostgreSQL"
-  type        = string
-  default     = "foobarbaz"
-}
-
-variable "helm_chart_version" {
-  description = "Version of the Bitnami PostgreSQL Helm chart"
-  type        = string
-  default     = "15.3.2"
-}

@@ -13,7 +13,3 @@ output "gke_cluster_name" {
 output "gke_cluster_endpoint" {
   value = google_container_cluster.gke_cluster.endpoint
 }
-output "postgres_service" {
-  description = "PostgreSQL Service Name"
-  value       = helm_release.postgresql.name
-}
