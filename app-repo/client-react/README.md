@@ -1,5 +1,5 @@
 ```
-npm create vite@latest
+npm2 create vite@latest
 ```
 
 ```
