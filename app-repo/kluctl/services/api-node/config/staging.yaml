@@ -1,2 +1,2 @@
 apiNode:
-  version:foobarbaz # STAGING_IMAGE_TAG
+  version:v1.0.0-13-g92bb49b # STAGING_IMAGE_TAG
