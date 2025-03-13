@@ -3,7 +3,7 @@ version: "3"
 tasks:
   generate-version-tag:
     cmds:
-      - cmd: git describe --tags --always --first-parent --match "[0-9]*.[0-9]*.[0-9]*"
+      - cmd: git describe --tags --always --first-parent --match "v[0-9]*.[0-9]*.[0-9]*"
         silent: true
     desc: "Use git describe to generate a tag based on the latest release tag"
 
@@ -27,7 +27,7 @@ tasks:
           find "{{.STARTING_PATH}}" -type f \( -name "*.yaml" -o -name "*.yml" \) -exec grep -l "{{.IDENTIFIER_COMMENT}}" {} \; | while read -r file; do
             if ! echo "{{ .EXCLUDED_FILES }}" | grep -q "$file"; then
               echo "Updating: $file"
-              sed -i "s|\(\s*.*:\s*\).* \({{ .IDENTIFIER_COMMENT }}\)|\1{{ .NEW_TAG }} \2|" "$file";
+              sed -i '' "s|\(\s*.*:\s*\).* \(# STAGING_IMAGE_TAG\)|\1foobarbaz \2|" "$file"
             fi
           done
 
