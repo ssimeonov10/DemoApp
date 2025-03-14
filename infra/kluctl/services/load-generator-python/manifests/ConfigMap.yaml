@@ -1,0 +1,10 @@
+# 🚨 This is currently unused (for example purposes)
+# The env var is defined directly in the deployment
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: load-generator-config
+  namespace: demo-app-{{ args.environment }}
+data:
+  API_URL: http://api-node.demo-app-{{ args.environment }}.svc.cluster.local:3000
+  DELAY_MS: "100"

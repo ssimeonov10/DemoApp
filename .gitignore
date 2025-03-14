@@ -1,0 +1,6 @@
+# Ignore Terraform local state & provider binaries
+.terraform/
+*.tfstate
+*.tfstate.backup
+bin/
+**/.DS_STORE

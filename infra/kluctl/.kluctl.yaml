@@ -1,0 +1,17 @@
+targets:
+  - name: staging
+    args:
+      environment: staging
+      environmentType: non-prod
+    # Adding a context to .kluctl.yaml helps prevent accidentally deploying to the wrong cluster!
+    context: gke_oceanic-hook-451512-q8_europe-west3-b_my-second-cluster
+  - name: production
+    args:
+      environment: production
+      environmentType: prod
+    # Adding a context to .kluctl.yaml helps prevent accidentally deploying to the wrong cluster!
+    context: gke_oceanic-hook-451512-q8_europe-west3-a_my-cluster
+args:
+  - name: environment
+  - name: environmentType
+discriminator: kluctl-{{ target.name }}
