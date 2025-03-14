@@ -1,2 +1,2 @@
 clientReact:
-  version:foobarbaz # STAGING_IMAGE_TAG
+  version:v2.0.0-2-g19d51f3 # STAGING_IMAGE_TAG
