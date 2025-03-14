@@ -12,7 +12,6 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 
 FROM build-base AS dev
 
-# Install air for hot reload & delve for debugging
 RUN go install github.com/cosmtrek/air@latest && \
   go install github.com/go-delve/delve/cmd/dlv@latest
 
@@ -45,19 +44,14 @@ ENV GIN_MODE=release
 
 WORKDIR /
 
-# Copy the passwd file
 COPY --from=build-production /etc/passwd /etc/passwd
 
-# Copy the healthcheck binary from the build stage
 COPY --from=build-production /app/healthcheck/healthcheck healthcheck
 
-# Copy the app binary from the build stage
 COPY --from=build-production /app/api-golang api-golang
 
-# Use nonroot user
 USER nonroot
 
-# Indicate expected port
 EXPOSE 8080
 
 CMD ["/api-golang"]
